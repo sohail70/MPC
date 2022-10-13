@@ -92,7 +92,7 @@
 
 
 
-%% Double integrator  --> adadhha lozoman dorost nist - albate begheyr az A B va C ke vase discrete double integ hastan
+%% Double integrator
 %% system
 system.A = [1 1;0 1];
 system.B = [1/2;1];
@@ -100,9 +100,9 @@ system.C = [1;0];
 
 constraints.C = [1 0 ; -1 0; 0 1;0 -1; 0 0;0 0]; %you might get empty constraints by generating random so be careful
 constraints.D = [0;0;0;0;1;1];
-constraints.e = [2;10;10;10;2;2];
+constraints.e = [10;2;10;10;2;2];
 
 %% target 
 target.G = [1 0;-1 0;0 1;0 -1];
-target.h = [2;10;10;10];
+target.h = [10;2;10;10];
 
