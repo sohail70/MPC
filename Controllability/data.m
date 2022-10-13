@@ -76,30 +76,17 @@
 
 
 
-% %% Mesale maghale
-% %% system
-% system.A = [0.9224 0.2273; -0.2273 0.9224];
-% system.B = zeros(2,1);
-% system.C = [0;0];
-% %% constraints
-% constraints.C = [1 0 ;-1 0 ; 0 1; 0 -1];
-% constraints.D = [70; 30; 20; 10];
-% constraints.e = [70;30;20;10];
-% %% target
-% target.G = [1 0;-1 0;0 1;0 -1]; %target set is the state constraint set
-% target.h = [70; 30; 20; 10];
-% N=10;
 
 
 
-%% Double integrator  --> adadhha lozoman dorost nist - albate begheyr az A B va C ke vase discrete double integ hastan
+%% Double integrator 
 %% system
 system.A = [1 1;0 1];
 system.B = [1/2;1];
 system.C = [1;0];
 
 constraints.C = [1 0 ; -1 0; 0 1;0 -1; 0 0;0 0]; %you might get empty constraints by generating random so be careful
-constraints.D = [0;0;0;0;1;1];
+constraints.D = [0;0;0;0;1;-1];
 constraints.e = [2;10;10;10;2;2];
 
 %% target 
