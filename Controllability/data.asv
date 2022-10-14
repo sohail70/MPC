@@ -95,13 +95,8 @@ target.h = [2;10;10;10];
 
 %exes_mcis ro ye bar ba target.h = [0;0;0;0] bezan ke dar vaghe az inside
 %shoro kuni va ye bar ba target.h=[2;10;10;10] bezan ke az biron shoro kuni
-%deghat kuni mibini jofteshoon be ye shekl converge mishan. albate malom
-%nist ke hamishe in etefagh biofte. dar vaghe example e hanoz peyda nashode
-%ke in be yek chiz hamgara nashan vali proof e ham ndarim ke hatman hamishe
-%be yek chiz hamgara mishan
+%deghat kuni mibini jofteshoon be ye shekl converge mishan. albate hamishe
+%in etefagh nemiofte vali dar in example oftade.
 % nokte besiar mohem ine ke vaghti h==[0;0;0;0] mizari va az dakhel shoro
-% mikuni tamame set haye ke in beyn ijad mishe control invariant hastan by
-% construction.
-% vali agar az outside shoro kuni hichkodom control invariant nistan ta
-% zamani ke be limit yani akhari beresi. so a logical approximation would
-% be to grow from inside to outside
+% mikuni tamame set haye ke in beyn ijad mishe positively invariant hastan
+% vali agar az outs
