@@ -13,7 +13,7 @@
 % %% target
 % target.G = [1; -1];
 % target.h = [1; 1];
-
+% 
 %U = n_u_set(system,constraints,target,-2.5,10) inoo har iter X(i) va U(i)
 %ro plot kun ta bishtar dark kuni- masalan dar iter aval ctrb set mishe
 %beyne -1 ta 1 va chun roye u gheyd darim [-1 to 1] pas age dar state e
@@ -83,7 +83,7 @@
 %% system
 system.A = [1 1;0 1];
 system.B = [1/2;1];
-system.C = [1;0];
+system.C = [0;0];
 
 constraints.C = [1 0 ; -1 0; 0 1;0 -1; 0 0;0 0]; %you might get empty constraints by generating random so be careful
 constraints.D = [0;0;0;0;1;-1];
@@ -91,5 +91,5 @@ constraints.e = [2;10;10;10;2;2];
 
 %% target 
 target.G = [1 0;-1 0;0 1;0 -1];
-target.h = [2;10;10;10];
+target.h = [0;0;0;0];
 

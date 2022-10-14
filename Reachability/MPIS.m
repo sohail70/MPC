@@ -11,6 +11,7 @@
 %    current_target.G = cts.A;
 %    current_target.h = cts.b;
 %    X(k+1) = b_set(system,constraints,current_target);
+%    % shart e inclusion dar if agar moshkele numerical dasht bayad epsilon bezari
 %    if(X(k+1)>X(k)) %in shart momkene bekhatere problem haye numerical eshtebah javab bede yani hold bokone dar vagheyat ama nare to if pas niaz mishe deep tar analyze bokoni albate dar masael sade be moshkel bar nemikhoori
 %       break; 
 %    end

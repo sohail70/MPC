@@ -1,8 +1,10 @@
 %% albate in ye model control hast va mitoni min of norm of the state bezni na mesle inja u trasnpose dar u ro min kuni ...
 %% input va states va control ro plot kun badan
 %% this is a close loop control because we are doing it sequentially
-function t = min_time_to_target_set(system,constraints,target,x)
-N=20;
+%% ghablan esme in func min_time_to_target bod ke eshtebahe chun in code to ro be traget set e Xf nemibare- pas deghat kun dar data h ro 0 bezari ya ye addad kamtar az constraint e statespace bezari. dalil ine ke tartibe set ha fargh mikune.
+%% TODO: write a code for target Xf
+function t = min_time_to_origin(system,constraints,target,x)
+N=20; % fek kunam in bayad ye meghdare ghabele tavajoh bashe chun halghe for dakheli error naded va x toye ctrb set bashe
 X=n_c_set(system,constraints,target,N);
 time_steps_of_sim = 150; %150 steps --> ino haminjoori neveshtam va har vaght be target set residim break kunim
 

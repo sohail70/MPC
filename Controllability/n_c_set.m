@@ -1,6 +1,6 @@
 function X=n_c_set(system,constraints,target,N)
 %mpt_demo_sets3 -->slide 2
-X(1)= Polyhedron(target.G,target.h);
+X(1)= Polyhedron(target.G,target.h); %Me: remeber we start from the Xf so we go backward in time 
 for i=1:N
    cts = X(i); % current target set-->cts
    current_target.G = cts.A;
