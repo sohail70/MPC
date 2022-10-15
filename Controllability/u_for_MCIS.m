@@ -8,14 +8,15 @@
 % hatman yek u vojod dare ke maro oon to negahdare
 function [] = u_for_MCIS(system,constraints,target)
 kmax = 200;
-[X,di] = MCIS(system,constraints,target,kmax); %Me : It's computed forward in time so make it backward so that You can use it 
+[X,di] = MCIS(system,constraints,target,kmax); 
 MCIset = X(di);
 %MCIS is the only target 
 target.G = MCIset.A;
 target.h = MCIset.b;
-
+subplot(2,1,1);
 plot(MCIset);
 hold on;
+
 time_steps_of_sim = 5000; 
 
 % choose a random point inside the control invariant set ---> we wanna show
@@ -23,13 +24,26 @@ time_steps_of_sim = 5000;
 % set
 x = MCIset.randomPoint ; %starting point of out dynamic
 thePoint=plot(x(1),x(2),'ob');
+% x = [-8;4]; %dar iteration 4 u_min empty set mishe!!!  chera?!
+%x=[-10;6];
+U = [];
+I =[];
 for i=1:time_steps_of_sim
     delete(thePoint);%clearing the plot
     u_min = one_step_min_effort_control(system,constraints,target,x);
     x = system.A * x + system.B*u_min;
+    subplot(2,1,1);
     thePoint=plot(x(1),x(2),'ob');
-    pause(.01);
+    drawnow;
+    
+    U = [U,u_min];
+    I = [I,i];
+    subplot(2,1,2);
+    plot(I,U,'r');
+    hold on;
+    disp(x(2));
 end
-
+% jalebe ke double integrator agar state dovom buad ro sef dg u ziadi niaz
+% nadare ke maro ro seft negah dare
 
 end
