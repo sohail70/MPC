@@ -14,3 +14,10 @@ end
 di = k;
 
 end
+
+% 
+% when you start from the whole space and you remove the bad point
+% you get maximal something invariant set but if you start from the inside your invariant set may grow
+% but you won't converge to maximal invarint set because there might be multiple fixed point of this operator ,or multiple set from which you can not move(page 89 jozve)
+
+%if it converges it will be fixed point of this func --> X = C(X)
