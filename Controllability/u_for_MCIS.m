@@ -23,9 +23,14 @@ time_steps_of_sim = 5000;
 % that there is always a u for you to keep you inside the control invariant
 % set
 x = MCIset.randomPoint ; %starting point of out dynamic
+
+
+%x = [-8;4]; %dar iteration 4 u_min empty set mishe!!!  chera?! because quadprog gives you an empty set as u_min which means it couldn't solve the optimization poblem. maybe the problem is not wellposed (I mean the constraints aren't consistent with each other) --> or I think its numerical issues because if you change the hessian to sth other than 1 it can pass it and another thing is if you debug the code sometimes it passes
+%I actually analysed it a little more and reach to the conclusion that
+%constraints forces the u_set function to give a point as a result and
+%polyhedron doesn't plot a point and it arises an issue along the way
 thePoint=plot(x(1),x(2),'ob');
-% x = [-8;4]; %dar iteration 4 u_min empty set mishe!!!  chera?!
-%x=[-10;6];
+
 U = [];
 I =[];
 for i=1:time_steps_of_sim
@@ -33,7 +38,7 @@ for i=1:time_steps_of_sim
     u_min = one_step_min_effort_control(system,constraints,target,x);
     x = system.A * x + system.B*u_min;
     subplot(2,1,1);
-    thePoint=plot(x(1),x(2),'ob');
+    thePoint=plot(x(1),x(2),'ob','linewidth',2.5);
     drawnow;
     
     U = [U,u_min];
@@ -42,8 +47,9 @@ for i=1:time_steps_of_sim
     plot(I,U,'r');
     hold on;
     disp(x(2));
+    %pause(0.5);
 end
-% jalebe ke double integrator agar state dovom buad ro sef dg u ziadi niaz
+% jalebe ke double integrator agar state dovom buad ro sefr dg u ziadi niaz
 % nadare ke maro ro seft negah dare
 
 end
