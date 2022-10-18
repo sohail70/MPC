@@ -39,12 +39,16 @@ system.b = zeros(2,1);
 %% constraints
 constraints.C = [1 0 ;-1 0 ; 0 1; 0 -1];
 constraints.d = [70; 30; 20; 10];
-
+% constraints.d = [10; 10; 10; 10];
 %% target
 target.G = [1 0;-1 0;0 1;0 -1]; %target set is the state constraint set
 target.h = [70; 30; 20; 10];
+% target.h = [10; 10; 10; 10];
 N=10;
-
+%% Disturbance for robust simulations:
+Ew = [1 0 ; -1 0; 0 1;0 -1];
+Gw = 0.35*[1;1;1;1];
+W = Polyhedron(Ew,Gw);
 
 % hala benvis X = n_c_set(system,constraints,target,10)
 % khoroji age y mosalas bod ke ye khat chasbide bod behesh yani set dar

@@ -94,7 +94,7 @@ target.G = [1 0;-1 0;0 1;0 -1];
 target.h = [2;10;10;10];
 %% Disturbance for robust simulations: control effort is between -1 and 1 so disturbance is better to be box of 0.2 so that its not big
 Ew = [1 0 ; -1 0; 0 1;0 -1];
-Gw = 2*[1;1;1;1];
+Gw = .2*[1;1;1;1];
 W = Polyhedron(Ew,Gw);
 
 %exes_mcis ro ye bar ba target.h = [0;0;0;0] bezan ke dar vaghe az inside

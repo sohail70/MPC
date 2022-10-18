@@ -40,3 +40,13 @@ end
 di = k;
 
 end
+
+%% minimum PIS --> equilibrium
+%% Maximum PIS --> would correspond to domain of attraction - maximal inv set is not necessarily maximal stabilizable set
+% deghat kun aya positively invariant be manaye stability hast ? no --> its
+% only boundedness mahsoob mishe. if the positively invariant set is
+% compact and bounded, trajectories will remain BOUNDED. vali malom nist ke
+% beshe trajectory ro dakhele hamsayegi epsilon ba vojod delta negah dari.
+% faghat mitooni begi trajectory ha bounded hastan. so there is stability
+% in sense of trajecties are being bounded but not in the sense of
+% boundeness of equilibria
