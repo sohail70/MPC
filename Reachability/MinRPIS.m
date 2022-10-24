@@ -1,4 +1,4 @@
-function [R,S] = MinRPIS(system,constraints,target,disturbance,alpha)
+function [R,S] = MinRPIS(system,constraints,target,disturbance,alpha) %its calculated by forward reachability 
 %alpha is between 0 and 1---> age alpha ro kam begiri R va S be ham
 %nazdiktar mishan vali iteration haye bishtari niaz mishe
 k = 1;
@@ -7,10 +7,10 @@ while true
     WW = alpha*disturbance;
     A_k_W = system.A^k * disturbance;
     
-    if WW.contains(A_k_W)==1 % mitoony is A_k_W<WW ham use kuni- albate age iteration bishtari beri daghigh tar mishe quality of approximation
+    if WW.contains(A_k_W)==1 % mitoony is A_k_W<= WW ham use kuni- albate age iteration bishtari beri daghigh tar mishe quality of approximation
         break;
     end
-    S_k_minus_1 = S_k_minus_1 + A_k_W;
+    S_k_minus_1 = S_k_minus_1 + A_k_W; % add kardan set ha object haye complex misaze va age dynamic et rotation tor bashe mesle mesale paeen onvaght dari curve surface ijad mikuni vase hamin dar limit calc in object ha sakhte -> trade of between complexity vs precision and accuracy --> its for the designer to decide
     k = k+1;
 end
 S = S_k_minus_1; %INNER ESTIMATE s(k-1)
