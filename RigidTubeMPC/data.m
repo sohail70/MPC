@@ -34,7 +34,7 @@ constraints.d = 2;
 
 constraints.D = [1;-1]; 
 constraints.e = [1;1];
-N=10;
+N=9;
 %% cost
 cost.Q = (0.5)*eye(2); %albate dar lecture note (0.5) nadare vali dar paper az 0.5 use kardim
 cost.R = (0.5)*0.01;
@@ -127,3 +127,7 @@ CLsystem.K = system.K;
 [X,di] = MPIS(CLsystem,ZlConstraint,ZlTarget,100);
 Zf = X(di); % The last one is Zf 
 
+
+
+%% Cost
+Cost(cost,designIngrediant.P,N);

@@ -1,0 +1,16 @@
+function [H,f] = Cost(cost, P ,N ) %N is horizon length
+n = size(cost.Q,1); %state space dim
+m = size(cost.R,1); % control dim
+H = zeros((N+1)*n + N*m); %(9+1)*2 + 9 = 29 mishe dimension   %Hessian ee ke bayad be quad prog bedim ro inja construct mikunim
+% Q ro bezar to matrix --> vase z0 ta zN
+%Z_k ' * Q * z_k for 
+H(1:n*N,1:n*N ) = kron(eye(N),cost.Q); %ghablan ye bar half kardim Q ro pas inja nakon dg vali badan bayad zarbdar 2 kunim chum quadprog halft mikune khod bekhod vase hamin 2 barabar mikunim ta badan ke half shod dobare beshe hamini ke darim va hamini ke darim ro hal kunim
+H((n*N)+1:(n*N)+2,(n*N)+1:(n*N)+2) = P; %19-20 * 19-20
+
+%v_k' * R * v_k  for k=0,1,...,N-1
+H((n*N)+3:end , (n*N)+3:end) =kron(eye(N),cost.R);
+
+%mishe kolan bejaye in hame assingment az blkdiag estefade kuni
+
+f = zeros((N+1)*n + N*m,1); 
+end
