@@ -125,9 +125,10 @@ CLsystem.A = system.A + system.B*system.K;
 CLsystem.B = zeros(2,1);
 CLsystem.K = system.K;
 [X,di] = MPIS(CLsystem,ZlConstraint,ZlTarget,100);
-Zf = X(di); % The last one is Zf 
+designIngrediant.Zf = X(di); % The last one is Zf 
 
 
 
 %% Cost
-Cost(cost,designIngrediant.P,N);
+[H,f] = Cost(cost,designIngrediant.P,N);
+[A_in,c_in,C_in] = InequalityConstraints(designIngrediant,N,size(cost.Q,1),size(cost.R,1)); 
