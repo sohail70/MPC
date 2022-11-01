@@ -131,4 +131,5 @@ designIngrediant.Zf = X(di); % The last one is Zf
 
 %% Cost
 [H,f] = Cost(cost,designIngrediant.P,N);
-[A_in,c_in,C_in] = InequalityConstraints(designIngrediant,N,size(cost.Q,1),size(cost.R,1)); 
+[A_in,c_in,C_in] = InequalityConstraints(designIngrediant,N,size(cost.Q,1),size(cost.R,1));
+[A_eq,b_eq] = EqualityConstraints(system,N,size(cost.Q,1),size(cost.R,1)); 
