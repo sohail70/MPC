@@ -25,6 +25,7 @@
 %% system
 system.A = [1 1;0 1];
 system.B = [0.5;1];
+system.C = zeros(2,1);
 %% diturbance
 Ew = [1 0 ; -1 0; 0 1;0 -1];
 Gw = 0.1*[1;1;1;1];
@@ -121,6 +122,9 @@ end
 %constraints in a polyhedral form
 X = Polyhedron(constraints.C,constraints.d);
 U = Polyhedron(constraints.D,constraints.e);
+
+
+
 
 % now we need to check if S is a subset of X and KS is a subset of U
 % you can check it by using  designIngrediant.S<=X and
