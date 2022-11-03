@@ -1,4 +1,5 @@
-%xplus = [1 1;0 1]x + [0.5;1]u + w --> double integrator
+%xplus = [1 1;0 1]x + [0.5;1]u + w --> double integrator --> what is a
+%double integrator : http://liberzon.csl.illinois.edu/teaching/cvoc/node85.html
 %U = {u | |u|<=1} --> Du<=e
 %X = {x | [0 1]x<=2}   --> state constraint  --> Cx<=d
 %W = {w | |w|_inf <=0.1} --> so diturbance here is an infinity norm ball-->
@@ -34,7 +35,7 @@ constraints.d = 2;
 
 constraints.D = [1;-1]; 
 constraints.e = [1;1];
-N=20;
+N=9;
 %% cost
 cost.Q = (0.5)*eye(2); %albate dar lecture note (0.5) nadare vali dar paper az 0.5 use kardim
 cost.R = (0.5)*0.01;
@@ -56,12 +57,30 @@ system.K = -system.K; % choon to jozve azu=Kx estefade kardim vali matlab func e
 %neveshte--> check kuni mibini doroste --> chun ma Q va R ro half vared
 %kardim
 %designIngrediant .P .S .Z .V .Zf  ro store mikunm
-
-
+%% matalabe hashieee ee --> masalan biaym double integrator ro be position e 10 bebarim yani x_target=[10;0]
+%in ro bekhooni bad nist: https://math.stackexchange.com/questions/3906390/lqr-control-for-quadrotor
+%be sorate kholase dare mige x va xdot darim vase double integrator va
+%local stability be in mana nist ke betooni x va xdot ro yeja negah dari
+%chun vaghti xdot ro ye ja hold kuni yani position ro dari taghir midi pas
+%nemitooni x_target =[10;3] masalan dashte bashee vali [10;0] ro mitonni be
+%onvane target bedi - albate mishe toye ye lahze in do ro be ye ja resoond
+%ama faghat vase ye lahze!
+%nokte badi ine ke age bebini to lahze aval u_feedback ziade chun cost R ro
+%kam gereftim yani control cheap hast , yani har cheghadr mikhay mitonni
+%control bedi yani kheili poldarim rahat kharj kun!! age R ro ziad bezarim
+%oonvaght dirtar hamgara mishim be jaee ke mikhaym
+%{
+x_target =[100;0];
+x = [0;0];
+for i =1:20
+    u_feedback = system.K*(x-x_target);
+    x = system.A*x + system.B*u_feedback
+end
+%}
 %hala ke K ro bedast avordi A+BK (deghat kun ma chun K=-K gereftim mishe A+BK vagarna A-BK bod) ro check kun bebin eig esh less tha one
 %hast ya na --> eig(system.A + system.B * designIngrediant.K) ----->   
 % eig = [0.3303; 0.0132] which is less than one --> so its good
-
+%%
 
 % dar lectue goftim KS va KZ ke different bodan ama dar paper KS va KZ
 % equal hastan yani az ye K vase hardo use mikunim
@@ -172,28 +191,4 @@ designIngrediant.Zf = X(di); % The last one is Zf
 [A_in,c_in,C_in] = InequalityConstraints(designIngrediant,N,size(cost.Q,1),size(cost.R,1));
 [A_eq,b_eq] = EqualityConstraints(system,N,size(cost.Q,1),size(cost.R,1)); 
 
-n = size(cost.Q,1);
-m = size(cost.R,1);
-x = [15;-15];
-plot(x(1),x(2),'or');
-hold on;
-sim_time = 100;
-% agar optimization infeasible bood N ro ziad kun
-for i = 1:sim_time
-    b_in = c_in + C_in*x;
-    sol = quadprog(0.5*H,f,A_in,b_in,A_eq,b_eq);
-    x_nominal_seq = reshape(sol(1:(N+1)*n) , n, N+1);
-    u_nominal_seq = reshape(sol((N+1)*n+1:end) , m, N);
-    
-    u_nominal = u_nominal_seq(:,1);
-    
-    u_feedback = system.K*(x - x_nominal_seq(:,1));
-    u_next = u_nominal + u_feedback;
-    
-    random_w = W.randomPoint;
-    
-    x = system.A * x + system.B * u_next + random_w;
-    plot(x(1),x(2),'or');
-    hold on;
-    pause(0.5);
-end
+
