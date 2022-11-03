@@ -14,11 +14,12 @@
 
 
 
-%% loading the data
+%% loading the data - offline stage
 data;
-%% Control
+%% Control - online stage
 n = size(cost.Q,1);
 m = size(cost.R,1);
+
 x = [-15;-1.5];
 figure('Renderer', 'painters', 'Position', [10 10 900 600])
 
@@ -38,8 +39,14 @@ for i = 1:sim_time
     Plotting(x,x_nominal_seq,u_nominal_seq,designIngrediant);
     %% control law
     u_cur = Control(u_nominal_seq(:,1),x_nominal_seq(:,1) , system.K , x);
-    %% Random disturbance
-    random_w = W.randomPoint;
+    
+    %% Random disturbance --> a random point inside set W or choose an extreme point on the boundary of the W
+    
+    %random_w = W.randomPoint;
+    direction = [randi([-1,1]);randi([-1,1])];
+    random_w = W.extreme(direction).x; % extreme point in an specific direction
+
+    
     %% dynamic propagation
     x = system.A * x + system.B * u_cur + random_w;
     %%
